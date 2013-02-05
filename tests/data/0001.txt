@@ -1,0 +1,67 @@
+/**
+ *	Lexer test data ;
+ *
+ */
+
+
+// keyword tokens
+	abstract   continue   for          new         switch
+    assert     default    if           package     synchronized
+    boolean    do         goto         private     this
+    break      double     implements   protected   throw
+    byte       else       import       public      throws
+    case       enum       instanceof   return      transient
+    catch      extends    int          short       try
+    char       final      interface    static      void
+    class      finally    long         strictfp    volatile
+    const      float      native       super       while
+    null
+
+// identifiers    
+asdfasdfasdf
+$$$
+$00123123sdf
+___
+
+
+// numbers
+
+// octal
+0_0
+00
+0123
+0
+0200_0000_0000
+
+// binary number
+0b0111_1111_1111_1111_1111_1111_1111_1111
+
+// hex number
+0x0
+0xaeb5f
+0x.1234f
+0x133e.1231
+
+// decimal number
+12345
+123556.123
+876540.123e123
+876540.123e1234f
+1238e123123
+1238e123123F
+
+true
+false
+java
+"java"
+0;
+i++
+boolean.class
+0D
+0L
+42L)
+'*'
+0.0
+.5f
+0x400000L
+ctx._or

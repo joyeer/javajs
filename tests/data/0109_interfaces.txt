@@ -1,0 +1,18 @@
+interface BaseColors extends BaseColors, PrintColors{
+    int RED = 1, GREEN = 2, BLUE = 4, CHARTREUSE = RED+90;
+}
+
+interface Test {
+    float f = j;
+    int   j = 1;
+    int   k = k + 1;
+}
+interface InfiniteBuffer extends Buffer {
+    char get() throws BufferException, BufferException2;  // override
+}
+interface PointInterface {
+    void move(int dx, int dy);
+}
+@interface Preliminary {
+	int id();
+}

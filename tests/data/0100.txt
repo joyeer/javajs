@@ -1,0 +1,29 @@
+package package1.package2;
+
+import java.util.Vector;
+import java.util.*;
+import static java.util.x ;
+import static java.util.* ;
+
+
+abstract class Point {
+	int x = 1, y = 1;
+}
+
+abstract class ColoredPoint extends Point {
+	int color;
+}
+
+class SimplePoint extends Point {
+}
+
+interface Colorable {
+	void setColor(int color);
+}
+
+abstract class Colored implements Colorable {
+	public abstract int setColor(int color);
+}
+
+public final class Math {
+}
