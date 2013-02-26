@@ -1,3 +1,19 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 var utils = require("./utils");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //SymTab
@@ -92,6 +108,7 @@ CodeSymTab.prototype.registerClass = function(pkgname,fullname,decl){
     SymTab.prototype.registerClass.call(this,pkgname,fullname,decl);
 
     var basename = utils.getBaseClassName(fullname);
+
     this._shortNameClassesIndex[basename] = decl;
 };
 
@@ -101,7 +118,7 @@ CodeSymTab.prototype.registerClass = function(pkgname,fullname,decl){
  * @param pkgname  default package name
  * @return {*}
  */
-CodeSymTab.prototype.getClass = function(name,pkgname){
+CodeSymTab.prototype.getClass = function(name,pkgname,level){
     if(name in this._shortNameClassesIndex){
         return this._shortNameClassesIndex[name];
     }
@@ -124,8 +141,22 @@ CodeSymTab.prototype.getClass = function(name,pkgname){
         }
     }
 
+    // search if it's part of inner classes
+    var parts = name.split(".");
+    if(level === undefined && parts.length > 1) {
+        var clazz = this.getClass(parts[0],pkgname,1);
+
+        for(var i = 1 ;i < parts.length ; i ++){
+            var n = parts[i];
+            clazz = clazz.getInnerClassByName(n);
+            if(clazz == null) {
+                return null;
+            }
+        }
+        return clazz;
+    }
+
     return null;
 };
 
-CodeSymTab 
 exports.CodeSymTab = CodeSymTab;
