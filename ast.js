@@ -302,7 +302,7 @@ AST.ClassDecl = function() {
 	this.accessFlag = 0;
 	this.name = "";
     this.shortname = "";
-    this.extends = null;              // extends super classs
+    this.extends = [];              // extends super classs
     this.implements = [];           // implements interfaces
 };
 

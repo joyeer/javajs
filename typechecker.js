@@ -99,8 +99,21 @@ TypeChecker.prototype.visitClassDecl = function(decl){
                 //TODO: refactor it
                 throw "Cannot find extends classses@" + type.identifiers.join(".")  + "@"  + this._unit.sourcepath;
             }
+            decl.extends.push(decl);
         }
 
+    }
+    // find the implementation interfaces
+    if(decl.implTypeList != null){
+        for(var i = 0 ; i < decl.implTypeList.length ; i++  ) {
+            var type = decl.implTypeList[i];
+            var decl = this._unit.codesym.getClass(type.identifiers.join("."),this._unit.name);
+            if(decl == null){
+                // TODO: refactor it!!!
+                throw "Cannot find implements classe@" + type.identifiers.join(".") + "@" + this._unit.sourcepath;
+            }
+            decl.implements.push(decl) ;
+        }
     }
 };
 
